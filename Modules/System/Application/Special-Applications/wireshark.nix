@@ -1,3 +1,15 @@
+# Wireshark (System Module)
+#
+# Provides:
+#   - Wireshark installation
+#   - Proper dumpcap permissions
+#   - Adds user to `wireshark` group
+#
+# Options:
+#   - enable   → Enable Wireshark system module
+#   - username → User to add to the wireshark group (required)
+#
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,16 +17,31 @@ let
 in
 {
   options.nyx-module.system.wireshark = {
-    enable = lib.mkEnableOption "Enable wireshark (system) module";
+    enable = lib.mkEnableOption "Enable Wireshark (system module)";
 
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.wireshark;
-      description = "Package to install for wireshark.";
+    username = lib.mkOption {
+      type = lib.types.str;
+      example = "alice";
+      description = "User to add to the wireshark group.";
     };
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = [ pkgs.wireshark ];
+
+    programs.wireshark = {
+      enable = true;  # Installs wireshark + sets dumpcap caps
+      package = pkgs.wireshark;
+    };
+
+    # Add user to wireshark group
+    users.users.${cfg.username}.extraGroups = [ "wireshark" ];
+
+    assertions = [
+      {
+        assertion = cfg.username != "";
+        message = "nyx-module.system.wireshark.username must be set to a valid user.";
+      }
+    ];
   };
 }

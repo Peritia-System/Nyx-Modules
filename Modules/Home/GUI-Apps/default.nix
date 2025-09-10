@@ -8,7 +8,6 @@
     ./Gaming
     ./Multimedia
     ./Office
-    ./System-Tools
     ./VPN
   ];
 }

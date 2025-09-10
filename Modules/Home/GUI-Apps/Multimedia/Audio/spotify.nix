@@ -1,3 +1,13 @@
+# Spotify (music streaming client)
+#
+# Provides:
+#   - Spotify package (default)
+#   - Optional override to install a different package
+#
+# Notes:
+#   - Installs into home.packages
+#
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,12 +15,17 @@ let
 in
 {
   options.nyx-module.home.spotify = {
-    enable = lib.mkEnableOption "Enable spotify (home) module";
+    enable = lib.mkEnableOption "Enable Spotify (home) module";
 
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.spotify;
-      description = "Package to install for spotify.";
+      example = pkgs.ncspot;
+      description = ''
+        Package to install for Spotify support.
+        Defaults to the official `pkgs.spotify`, but you can override with
+        `pkgs.ncspot`, `pkgs.spotifyd`, or similar alternatives.
+      '';
     };
   };
 

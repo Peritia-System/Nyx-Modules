@@ -1,3 +1,13 @@
+# Signal Desktop (Home Module)
+#
+# Provides:
+#   - Signal Desktop secure messaging client
+#
+# Options:
+#   - enable  → Enable Signal Desktop
+#   - package → Override package (default: pkgs.signal-desktop)
+#
+
 { config, lib, pkgs, ... }:
 
 let

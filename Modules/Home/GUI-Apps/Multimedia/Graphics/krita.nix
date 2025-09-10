@@ -1,3 +1,12 @@
+# Krita (Digital Painting Software)
+#
+# Provides:
+#   - Krita package (open-source digital painting and illustration software)
+#
+# Notes:
+#   - Installed via home.packages
+#
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,16 +14,12 @@ let
 in
 {
   options.nyx-module.home.krita = {
-    enable = lib.mkEnableOption "Enable krita (home) module";
-
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.krita;
-      description = "Package to install for krita.";
-    };
+    enable = lib.mkEnableOption "Enable Krita (home) module";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = with pkgs; [
+      krita
+    ];
   };
 }

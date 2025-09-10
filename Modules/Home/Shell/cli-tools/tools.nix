@@ -1,20 +1,40 @@
+# CLI Tools (Home Module)
+#
+# Provides:
+#   - A curated set of command-line utilities in user’s environment
+#   - Examples: fastfetch, hyfetch, bat, fzf, tree, lsd, tmux
+#
+# Options:
+#   - enable → Enable CLI tools collection
+#   - extra  → List of extra packages to install
+
+
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.nyx-module.home.tools;
+  cfg = config.nyx-module.home.cli-tools;
 in
 {
-  options.nyx-module.home.tools = {
-    enable = lib.mkEnableOption "Enable tools (home) module";
+  options.nyx-module.home.cli-tools = {
+    enable = lib.mkEnableOption "Enable CLI tools (home module)";
 
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.tools;
-      description = "Package to install for tools.";
+    extra = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [];
+      example = [ pkgs.ripgrep pkgs.htop ];
+      description = "Extra CLI tools to install in addition to the defaults.";
     };
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = with pkgs; [
+      fastfetch
+      hyfetch
+      bat
+      fzf
+      tree
+      lsd
+      tmux
+    ] ++ cfg.extra;
   };
 }

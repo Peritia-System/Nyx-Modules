@@ -1,3 +1,13 @@
+# Vesktop (Home Module)
+#
+# Provides:
+#   - Vesktop package (Discord client, Electron wrapper)
+#
+# Options:
+#   - enable  → Enable Vesktop client
+#   - package → Override package (default: pkgs.vesktop)
+#
+
 { config, lib, pkgs, ... }:
 
 let

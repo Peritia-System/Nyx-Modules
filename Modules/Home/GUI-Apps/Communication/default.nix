@@ -3,6 +3,6 @@
 {
   imports = [
     ./Messaging
-    ./Remote
+    ./Remote-Support
   ];
 }

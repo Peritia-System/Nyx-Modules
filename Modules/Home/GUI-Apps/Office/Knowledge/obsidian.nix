@@ -1,3 +1,13 @@
+# Obsidian (note-taking / PKM app)
+#
+# Provides:
+#   - Obsidian package via home.packages
+#
+# Notes:
+#   - Consider adding theming support later
+#     (e.g., https://github.com/jackiejude/obsidian-temple-os)
+#
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,16 +15,10 @@ let
 in
 {
   options.nyx-module.home.obsidian = {
-    enable = lib.mkEnableOption "Enable obsidian (home) module";
-
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.obsidian;
-      description = "Package to install for obsidian.";
-    };
+    enable = lib.mkEnableOption "Enable Obsidian (home module)";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [ pkgs.obsidian ];
   };
 }

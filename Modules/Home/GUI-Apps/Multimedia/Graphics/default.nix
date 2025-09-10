@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./image-viewer.nix
     ./krita.nix
   ];
 }

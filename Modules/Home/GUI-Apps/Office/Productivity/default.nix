@@ -2,7 +2,9 @@
 
 {
   imports = [
-    ./office-apps.nix
+    ./libreoffice.nix
+    ./pdf-reader.nix
     ./printer-scan.nix
+    ./thunderbird.nix
   ];
 }

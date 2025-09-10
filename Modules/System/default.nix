@@ -3,7 +3,6 @@
 {
   imports = [
     ./Application
-    ./Desktops
     ./Programming-Tools
   ];
 }

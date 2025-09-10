@@ -1,3 +1,15 @@
+# ProtonVPN (Home Module)
+#
+# Provides:
+#   - ProtonVPN GUI client
+#
+# Options:
+#   - enable → Enable ProtonVPN client
+#
+# Notes:
+#   - GUI only by default (CLI version available as pkgs.protonvpn-cli)
+    
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,16 +17,12 @@ let
 in
 {
   options.nyx-module.home.protonvpn = {
-    enable = lib.mkEnableOption "Enable protonvpn (home) module";
-
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.protonvpn;
-      description = "Package to install for protonvpn.";
-    };
+    enable = lib.mkEnableOption "Enable ProtonVPN (home module)";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = with pkgs; [
+      protonvpn-gui
+    ];
   };
 }

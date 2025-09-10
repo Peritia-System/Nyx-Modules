@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./Custom-Kernel.nix
+    ./custom-kernel-surfacepro-kbl.nix
   ];
 }

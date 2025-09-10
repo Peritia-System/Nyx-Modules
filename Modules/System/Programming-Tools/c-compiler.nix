@@ -1,3 +1,14 @@
+# C Compiler (System Module)
+#
+# Provides:
+#   - GCC (C/C++)
+#   - Clang (alternative C/C++)
+#   - Mono (C#)
+#
+# Options:
+#   - enable → Enable C compiler toolchain
+#
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,16 +16,15 @@ let
 in
 {
   options.nyx-module.system.c-compiler = {
-    enable = lib.mkEnableOption "Enable c-compiler (system) module";
-
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.c-compiler;
-      description = "Package to install for c-compiler.";
-    };
+    enable = lib.mkEnableOption "Enable C compiler (system module)";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = with pkgs; [
+      gcc         # C & C++
+      clang       # alt C/C++
+      mono        # C#
+    ];
   };
 }
+

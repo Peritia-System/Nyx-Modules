@@ -1,3 +1,13 @@
+# Rust (System Module)
+#
+# Provides:
+#   - Rust compiler (rustc)
+#   - Cargo (Rust package manager & build system)
+#
+# Options:
+#   - enable → Enable Rust system module
+#
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,16 +15,13 @@ let
 in
 {
   options.nyx-module.system.rust = {
-    enable = lib.mkEnableOption "Enable rust (system) module";
-
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.rust;
-      description = "Package to install for rust.";
-    };
+    enable = lib.mkEnableOption "Enable Rust (system module)";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = with pkgs; [
+      rustc
+      cargo
+    ];
   };
 }

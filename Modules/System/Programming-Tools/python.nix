@@ -1,3 +1,13 @@
+# Python (System Module)
+#
+# Provides:
+#   - Python 3 interpreter
+#   - Pip (package manager)
+#
+# Options:
+#   - enable → Enable Python system module
+#
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,16 +15,13 @@ let
 in
 {
   options.nyx-module.system.python = {
-    enable = lib.mkEnableOption "Enable python (system) module";
-
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.python;
-      description = "Package to install for python.";
-    };
+    enable = lib.mkEnableOption "Enable Python (system module)";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = with pkgs; [
+      python3
+      python3Packages.pip
+    ];
   };
 }

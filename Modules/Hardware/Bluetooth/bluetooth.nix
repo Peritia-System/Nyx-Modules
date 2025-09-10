@@ -1,20 +1,22 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.nyx-module.system.bluetooth;
+  cfg = config.nyx-module.hardware.bluetooth;
 in
 {
-  options.nyx-module.system.bluetooth = {
-    enable = lib.mkEnableOption "Enable bluetooth (system) module";
-
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.bluetooth;
-      description = "Package to install for bluetooth.";
-    };
+  options.nyx-module.hardware.bluetooth = {
+    enable = lib.mkEnableOption "Enable the system Bluetooth module";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    # Enable Bluetooth support
+    hardware.bluetooth = {
+      enable = true;          # Enable Bluetooth service
+      powerOnBoot = true;     # Power up the controller at boot
+    };
+
+    # Ensure firmware is available (needed for devices like Intel AX200)
+    hardware.enableAllFirmware = true;
+    hardware.firmware = [ pkgs.linux-firmware ];
   };
 }

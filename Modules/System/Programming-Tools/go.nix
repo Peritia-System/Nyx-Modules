@@ -1,3 +1,12 @@
+# Go (System Module)
+#
+# Provides:
+#   - Go programming language toolchain
+#
+# Options:
+#   - enable → Enable Go system module
+#
+
 { config, lib, pkgs, ... }:
 
 let
@@ -5,16 +14,12 @@ let
 in
 {
   options.nyx-module.system.go = {
-    enable = lib.mkEnableOption "Enable go (system) module";
-
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = pkgs.go;
-      description = "Package to install for go.";
-    };
+    enable = lib.mkEnableOption "Enable Go (system module)";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages = with pkgs; [
+      go
+    ];
   };
 }

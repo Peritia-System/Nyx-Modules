@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./cava.nix
     ./spotify.nix
   ];
 }

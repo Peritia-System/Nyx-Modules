@@ -4,7 +4,6 @@
   imports = [
     ./cli
     ./Gaming
-    ./Grub
     ./Special-Applications
   ];
 }

@@ -18,7 +18,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.gwenview;
+      default = pkgs.kdePackages.gwenview;
       example = pkgs.feh;
       description = "Image viewer package to install (e.g. gwenview, feh, imv).";
     };

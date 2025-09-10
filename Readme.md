@@ -1,8 +1,5 @@
 # Nyx-Modules
 
-
-# Nyx-Modules
-
 Welcome to **Nyx-Modules**!
 
 This is my repo with all my modules, which makes it easier for me to import them into different configurations. Maybe it helps someone else too.
@@ -194,7 +191,7 @@ But that is not really viable so check: `other/example` this is a shortend Versi
 
 ## Notes
 
-* Again this repository is intended as a guideline and reference for building modular Nix configurations.
-* Feel free to adapt any modules to your own setup.
-* Modules are organized by purpose (Hardware, Home, System) to make them easy to reuse across multiple machines.
-
+- Again this repository is intended as a guideline and reference for building modular Nix configurations
+- Feel free to adapt any modules to your own setup
+- Modules are organized by purpose (Hardware, Home, System) to make them easy to reuse across multiple machines
+- I also love it if you are interested and want to contribute too 

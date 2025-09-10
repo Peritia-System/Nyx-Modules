@@ -39,7 +39,7 @@ in
     # boot.kernelPackages = pkgs.linuxPackages_6_6; # normally set by nixos-hardware
 
     # Extra kernel modules
-    boot.kernelModules = [ "hid-microsoft" ];
+    boot.kernelModules = [ "hid-microsoft" "battery" "ac" ];
 
     # Initrd modules — required for Surface hardware to function
     boot.initrd.kernelModules = [
@@ -54,6 +54,16 @@ in
       "intel_lpss"
       "intel_lpss_pci"
       "8250_dw"
+    ];
+
+    environment.systemPackages = with pkgs; [
+      #for camera
+      libcamera
+
+      # for Battery 
+      tlp
+      upower
+      acpi
     ];
 
     # IPTSd not required — touchscreen and pen work via HID

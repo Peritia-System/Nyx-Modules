@@ -35,7 +35,6 @@ in
     ];
     
     
-    hardware.enableAllFirmware = true;
     # Pick kernel version for Surface hardware support
     hardware.microsoft-surface.kernelVersion = cfg.kernelVersion;
     # boot.kernelPackages = pkgs.linuxPackages_6_6; # normally set by nixos-hardware

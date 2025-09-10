@@ -18,7 +18,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.kdeApplications.okular;
+      default = pkgs.kdePackages.okular;
       example = pkgs.evince;
       description = "PDF or scanning GUI package to install (e.g. Okular, Evince, Xournal++).";
     };

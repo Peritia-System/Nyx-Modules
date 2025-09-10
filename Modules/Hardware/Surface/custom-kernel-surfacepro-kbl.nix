@@ -43,7 +43,7 @@ in
     # Extra kernel modules
     boot.kernelModules = [ "hid-microsoft" "battery" "ac" ];
 
-
+    hardware.enableAllFirmware = true;
     # Initrd modules — required for Surface hardware to function
     boot.initrd.kernelModules = [
       # Surface Aggregator Module (SAM): buttons, sensors, keyboard

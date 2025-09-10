@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="${1:-../Modules}"   # root dir (defaults to Modules)
 
-OUT_DIR="examples"
+OUT_DIR="generated-examples"
 mkdir -p "$OUT_DIR"
 
 OUT1="$OUT_DIR/example-with-headers-and-comments.nix"

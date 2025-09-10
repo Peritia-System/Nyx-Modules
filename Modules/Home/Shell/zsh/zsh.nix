@@ -33,7 +33,7 @@ in
         }
       ];
 
-      initExtra = ''
+      initContent = ''
         hyfetch
 
         alias ls='lsd'

@@ -4,7 +4,9 @@
 #   - inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
 #
 # Notes:
-#   - Estimated kernel build time: ~4h30m
+#   - Estimated kernel build time: 
+#                                 ~4h30m using Kernel 6.15.6
+#                                 ~4h00m using Kernel 6.15.9 
 #
 { config, lib, pkgs, ... }:
 

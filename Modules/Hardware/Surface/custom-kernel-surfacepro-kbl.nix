@@ -7,6 +7,8 @@
 #   - Estimated kernel build time: 
 #                                 ~4h30m using Kernel 6.15.6
 #                                 ~4h00m using Kernel 6.15.9 
+#   - Known Issues:
+#                   - Battery not getting detected. Issue opened: https://github.com/NixOS/nixos-hardware/issues/1612
 #
 { config, lib, pkgs, ... }:
 

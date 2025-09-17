@@ -7,5 +7,6 @@
     ./lua.nix
     ./python.nix
     ./rust.nix
+    ./ruby.nix
   ];
 }

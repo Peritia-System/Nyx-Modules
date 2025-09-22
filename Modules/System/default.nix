@@ -4,5 +4,6 @@
   imports = [
     ./Application
     ./Programming-Tools
+    ./Service
   ];
 }

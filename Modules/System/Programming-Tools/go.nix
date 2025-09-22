@@ -6,13 +6,14 @@
 # Options:
 #   - enable → Enable Go system module
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.go;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.go;
+in {
   options.nyx-module.system.go = {
     enable = lib.mkEnableOption "Enable Go (system module)";
   };

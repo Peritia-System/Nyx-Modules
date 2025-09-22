@@ -15,13 +15,14 @@
 # Options:
 #   - enable → Enable the Classic Game Collection
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.classic-game-collection;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.classic-game-collection;
+in {
   options.nyx-module.home.classic-game-collection = {
     enable = lib.mkEnableOption "Enable the Classic Game Collection (home module)";
   };

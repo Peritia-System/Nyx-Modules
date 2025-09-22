@@ -7,13 +7,14 @@
 # Notes:
 #   - You can override the GUI package with another (e.g., cheese, kamoso)
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.camera;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.camera;
+in {
   options.nyx-module.home.camera = {
     enable = lib.mkEnableOption "Enable camera (home) module";
 

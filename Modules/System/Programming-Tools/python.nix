@@ -7,13 +7,14 @@
 # Options:
 #   - enable → Enable Python system module
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.python;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.python;
+in {
   options.nyx-module.system.python = {
     enable = lib.mkEnableOption "Enable Python (system module)";
   };

@@ -15,13 +15,14 @@
 #   - virt-manager GUI is enabled automatically
 #   - Only generic "kvm" kernel module is forced (host picks intel/amd)
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.vm;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.vm;
+in {
   options.nyx-module.system.vm = {
     enable = lib.mkEnableOption "Enable VM (system module)";
 
@@ -49,10 +50,10 @@ in
     };
 
     # Add user to groups
-    users.users.${cfg.username}.extraGroups = [ "libvirtd" "kvm" ];
+    users.users.${cfg.username}.extraGroups = ["libvirtd" "kvm"];
 
     # Enable kernel modules for virtualization
-    boot.kernelModules = [ "kvm" ];
+    boot.kernelModules = ["kvm"];
 
     # Enable GUI management tool
     programs.virt-manager.enable = true;

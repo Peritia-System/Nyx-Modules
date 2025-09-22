@@ -11,13 +11,14 @@
 #   - theme    → oh-my-zsh theme (default: "xiong-chiamiov-plus")
 #   - plugins  → List of oh-my-zsh plugins (default: [ "git" ])
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.zsh;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.zsh;
+in {
   options.nyx-module.system.zsh = {
     enable = lib.mkEnableOption "Enable Zsh (system module)";
 
@@ -31,7 +32,7 @@ in
 
     plugins = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ "git" ];
+      default = ["git"];
       description = "List of oh-my-zsh plugins to enable.";
     };
   };
@@ -47,6 +48,6 @@ in
     };
 
     # Add zsh to available shells
-    environment.shells = with pkgs; [ zsh ];
+    environment.shells = with pkgs; [zsh];
   };
 }

@@ -7,13 +7,14 @@
 # Notes:
 #   - Installs into home.packages
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.spotify;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.spotify;
+in {
   options.nyx-module.home.spotify = {
     enable = lib.mkEnableOption "Enable Spotify (home) module";
 
@@ -30,6 +31,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
   };
 }

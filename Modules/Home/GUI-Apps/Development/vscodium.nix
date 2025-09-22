@@ -13,14 +13,14 @@
 # Notes:
 #   - Some Microsoft extensions may be broken (e.g., ms-python.python)
 #
-
-
-{ config, pkgs, lib, ... }:
-
-let
-  cfg = config.nyx-module.home.vscodium;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.nyx-module.home.vscodium;
+in {
   options.nyx-module.home.vscodium = {
     enable = lib.mkEnableOption "Enable VSCodium with extensions";
 
@@ -32,7 +32,7 @@ in
       extra = lib.mkOption {
         type = lib.types.listOf lib.types.package;
         default = [];
-        example = [ pkgs.vscode-extensions.ms-python.python ];
+        example = [pkgs.vscode-extensions.ms-python.python];
         description = "List of extra VSCodium extensions to install.";
       };
     };
@@ -43,16 +43,15 @@ in
       enable = true;
       package = pkgs.vscodium;
 
-      profiles.default.extensions =
-        lib.optionals cfg.extensions.enable (
-          (lib.optionals cfg.extensions.standard (with pkgs.vscode-extensions; [
-            catppuccin.catppuccin-vsc
-            jnoortheen.nix-ide
-            ms-azuretools.vscode-docker
-            # ms-python.python # currently broken (pygls failure)
-          ]))
-          ++ cfg.extensions.extra
-        );
+      profiles.default.extensions = lib.optionals cfg.extensions.enable (
+        (lib.optionals cfg.extensions.standard (with pkgs.vscode-extensions; [
+          catppuccin.catppuccin-vsc
+          jnoortheen.nix-ide
+          ms-azuretools.vscode-docker
+          # ms-python.python # currently broken (pygls failure)
+        ]))
+        ++ cfg.extensions.extra
+      );
     };
   };
 }

@@ -15,13 +15,14 @@
 # Notes:
 #   - Rootless mode is disabled by default
 #   - Uses cgroup v2 for better resource management on modern kernels
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.docker;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.docker;
+in {
   options.nyx-module.system.docker = {
     enable = lib.mkEnableOption "Enable Docker (system module)";
 
@@ -47,7 +48,7 @@ in
       rootless.enable = cfg.rootless;
     };
 
-    users.users.${cfg.username}.extraGroups = [ "docker" ];
+    users.users.${cfg.username}.extraGroups = ["docker"];
 
     environment.systemPackages = with pkgs; [
       docker
@@ -55,8 +56,7 @@ in
     ];
 
     # Optional: Docker cgroup v2 (usually enabled by default in modern NixOS)
-    boot.kernelParams = [ "cgroup_enable=memory" "cgroup_memory=1" ];
-
+    boot.kernelParams = ["cgroup_enable=memory" "cgroup_memory=1"];
 
     assertions = [
       {

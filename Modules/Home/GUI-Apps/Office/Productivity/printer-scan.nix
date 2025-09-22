@@ -7,13 +7,14 @@
 #   - Default is `simple-scan` (GNOME Document Scanner)
 #   - Can be overridden with another package such as `system-config-printer`
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.printer;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.printer;
+in {
   options.nyx-module.home.printer = {
     enable = lib.mkEnableOption "Enable printer GUI (home module)";
 
@@ -26,6 +27,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
   };
 }

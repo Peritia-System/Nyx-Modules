@@ -7,13 +7,14 @@
 #   - enable  → Enable Vesktop client
 #   - package → Override package (default: pkgs.vesktop)
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.vesktop;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.vesktop;
+in {
   options.nyx-module.home.vesktop = {
     enable = lib.mkEnableOption "Enable vesktop (home) module";
 
@@ -25,6 +26,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
   };
 }

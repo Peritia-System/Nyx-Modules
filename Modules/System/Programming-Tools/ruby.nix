@@ -13,13 +13,14 @@
 #   nyx-module.system.ruby.enable = true;
 #   nyx-module.system.ruby.bundler = false; # disable Bundler explicitly
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.ruby;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.ruby;
+in {
   options.nyx-module.system.ruby = {
     enable = lib.mkEnableOption "Enable Ruby (system module)";
 
@@ -35,8 +36,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages =
-      with pkgs;
+    environment.systemPackages = with pkgs;
       [
         ruby
         jruby

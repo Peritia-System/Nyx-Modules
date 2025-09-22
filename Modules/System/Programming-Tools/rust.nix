@@ -7,13 +7,14 @@
 # Options:
 #   - enable → Enable Rust system module
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.rust;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.rust;
+in {
   options.nyx-module.system.rust = {
     enable = lib.mkEnableOption "Enable Rust (system module)";
   };

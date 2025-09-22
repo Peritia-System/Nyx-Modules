@@ -14,13 +14,14 @@
 #   - Default extensions include uBlock Origin, Proton Pass, Proton VPN
 #   - Extra extensions must be specified by Chrome Web Store ID
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.brave;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.brave;
+in {
   options.nyx-module.home.brave = {
     enable = lib.mkEnableOption "Enable Brave (home module)";
 
@@ -30,7 +31,7 @@ in
       extra = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [];
-        example = [ "abcdefghijklmnop" "qrstuvwxyz123456" ];
+        example = ["abcdefghijklmnop" "qrstuvwxyz123456"];
         description = "List of additional Brave extension IDs to install.";
       };
     };
@@ -43,11 +44,11 @@ in
 
       extensions = lib.optionals cfg.extensions.enable (
         (lib.optionals cfg.extensions.standard [
-          { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
-          { id = "ghmbeldphafepmbegfdlkpapadhbakde"; } # Proton Pass
-          { id = "jplgfhpmjnbigmhklmmbgecoobifkmpa"; } # Proton VPN
-        ]) ++
-        (map (id: { inherit id; }) cfg.extensions.extra)
+          {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # uBlock Origin
+          {id = "ghmbeldphafepmbegfdlkpapadhbakde";} # Proton Pass
+          {id = "jplgfhpmjnbigmhklmmbgecoobifkmpa";} # Proton VPN
+        ])
+        ++ (map (id: {inherit id;}) cfg.extensions.extra)
       );
 
       commandLineArgs = [

@@ -18,13 +18,14 @@
 # Notes:
 #   - Uses --app mode for minimal windows (like PWAs)
 #   - Outlook entry uses a custom profile directory for isolation
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.work-webapps;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.work-webapps;
+in {
   options.nyx-module.home.work-webapps = {
     enable = lib.mkEnableOption "Enable work webapps (home module)";
 

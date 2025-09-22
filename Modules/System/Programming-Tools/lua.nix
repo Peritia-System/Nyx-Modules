@@ -7,13 +7,14 @@
 # Options:
 #   - enable → Enable Lua system module
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.lua;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.lua;
+in {
   options.nyx-module.system.lua = {
     enable = lib.mkEnableOption "Enable Lua (system module)";
   };

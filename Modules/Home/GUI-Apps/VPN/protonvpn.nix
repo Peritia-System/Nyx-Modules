@@ -8,14 +8,14 @@
 #
 # Notes:
 #   - GUI only by default (CLI version available as pkgs.protonvpn-cli)
-    
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.protonvpn;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.protonvpn;
+in {
   options.nyx-module.home.protonvpn = {
     enable = lib.mkEnableOption "Enable ProtonVPN (home module)";
   };

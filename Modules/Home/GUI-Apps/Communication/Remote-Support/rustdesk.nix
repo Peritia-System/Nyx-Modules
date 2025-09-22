@@ -10,20 +10,21 @@
 # Notes:
 #   - Estimated build time: ~? Long....
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.rustdesk;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.rustdesk;
+in {
   options.nyx-module.home.rustdesk = {
     enable = lib.mkEnableOption "Enable rustdesk (home) module";
 
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.rustdesk;
-       description = ''
+      description = ''
         Package to install for RustDesk.
         You can override this if you want to pin a version or use a fork.
       '';
@@ -32,6 +33,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
   };
 }

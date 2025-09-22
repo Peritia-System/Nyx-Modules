@@ -8,12 +8,14 @@
 # Options:
 #   - enable → Enable Flatpak system module
 #
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.flatpak;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.flatpak;
+in {
   options.nyx-module.system.flatpak = {
     enable = lib.mkEnableOption "Enable Flatpak (system module)";
   };
@@ -25,12 +27,12 @@ in
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk   # For GTK desktops
+        xdg-desktop-portal-gtk # For GTK desktops
         # xdg-desktop-portal-kde # Uncomment for KDE Plasma
       ];
     };
 
     # Optional explicit installation (not strictly needed)
-    environment.systemPackages = [ pkgs.flatpak ];
+    environment.systemPackages = [pkgs.flatpak];
   };
 }

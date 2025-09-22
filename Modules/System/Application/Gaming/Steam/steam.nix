@@ -14,13 +14,14 @@
 #   - openFirewall.dedicatedServer → Open firewall for Source Dedicated Server
 #   - openFirewall.localNetworkGameTransfers → Open firewall for LAN transfers
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.steam;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.steam;
+in {
   options.nyx-module.system.steam = {
     enable = lib.mkEnableOption "Enable Steam (system module)";
 

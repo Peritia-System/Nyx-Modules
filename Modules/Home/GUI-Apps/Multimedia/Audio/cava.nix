@@ -20,13 +20,14 @@
 #     settings.general.framerate = 120;
 #     settings.input.method = "pulse";
 #   };
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.cava;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.cava;
+in {
   options.nyx-module.home.cava = {
     enable = lib.mkEnableOption "Enable CAVA (home) module";
 
@@ -42,7 +43,7 @@ in
         };
       };
       description = ''
-        Declarative CAVA settings, written to `~/.config/cava/config`.  
+        Declarative CAVA settings, written to `~/.config/cava/config`.
         Ignored if `configText` is set.
       '';
       example = {
@@ -56,7 +57,7 @@ in
       type = lib.types.nullOr lib.types.lines;
       default = null;
       description = ''
-        Raw CAVA configuration file contents.  
+        Raw CAVA configuration file contents.
         If set, overrides `settings` and is written directly to `~/.config/cava/config`.
       '';
       example = ''
@@ -64,7 +65,7 @@ in
         framerate = 120
         [input]
         method = pulse
-        '';
+      '';
     };
   };
 
@@ -73,10 +74,8 @@ in
       enable = true;
       package = pkgs.cava;
 
-
       settings = lib.mkIf (cfg.configText == null) cfg.settings;
     };
-
 
     xdg.configFile."cava/config" = lib.mkIf (cfg.configText != null) {
       text = cfg.configText;

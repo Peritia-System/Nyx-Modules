@@ -6,13 +6,14 @@
 # Notes:
 #   - Installed via home.packages
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.krita;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.krita;
+in {
   options.nyx-module.home.krita = {
     enable = lib.mkEnableOption "Enable Krita (home) module";
   };

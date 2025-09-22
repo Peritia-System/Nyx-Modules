@@ -12,13 +12,14 @@
 # Notes:
 #   - Uses --app mode to create minimal browser windows
 #   - Additional services can be added following the same pattern
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.private-webapps;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.private-webapps;
+in {
   options.nyx-module.home.private-webapps = {
     enable = lib.mkEnableOption "Enable private webapps (home module)";
 

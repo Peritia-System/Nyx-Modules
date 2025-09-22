@@ -13,13 +13,14 @@
 #   - Adds podman + podman-compose to system packages
 #   - Enables D-Bus socket activation for Podman
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.podman;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.podman;
+in {
   options.nyx-module.system.podman = {
     enable = lib.mkEnableOption "Enable Podman (system module)";
 
@@ -33,7 +34,7 @@ in
   config = lib.mkIf cfg.enable {
     virtualisation.podman.enable = true;
 
-    users.users.${cfg.username}.extraGroups = [ "podman" ];
+    users.users.${cfg.username}.extraGroups = ["podman"];
 
     environment.systemPackages = with pkgs; [
       podman
@@ -41,8 +42,8 @@ in
     ];
 
     # Optional: enable Podman socket activation
-    services.dbus.packages = [ pkgs.podman ];
-    
+    services.dbus.packages = [pkgs.podman];
+
     assertions = [
       {
         assertion = cfg.username != "";

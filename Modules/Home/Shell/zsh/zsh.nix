@@ -6,13 +6,14 @@
 #
 # Options:
 #   - enable → Enable Zsh in the user profile
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.zsh;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.zsh;
+in {
   options.nyx-module.home.zsh = {
     enable = lib.mkEnableOption "Enable Zsh (home module)";
   };

@@ -6,13 +6,14 @@
 # Notes:
 #   - Defaults to Okular
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.pdf-viewer;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.pdf-viewer;
+in {
   options.nyx-module.home.pdf-viewer = {
     enable = lib.mkEnableOption "Enable PDF (home module)";
 
@@ -25,6 +26,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
   };
 }

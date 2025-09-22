@@ -6,13 +6,14 @@
 # Notes:
 #   - Defaults to Gwenview
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.image-viewer;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.image-viewer;
+in {
   options.nyx-module.home.image-viewer = {
     enable = lib.mkEnableOption "Enable image viewer (home module)";
 
@@ -25,6 +26,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
   };
 }

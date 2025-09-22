@@ -9,13 +9,14 @@
 # Notes:
 #   - Installed via home.packages
 #
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.home.zoom;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.home.zoom;
+in {
   options.nyx-module.home.zoom = {
     enable = lib.mkEnableOption "Enable Zoom (home) module";
 
@@ -27,6 +28,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
   };
 }

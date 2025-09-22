@@ -11,13 +11,14 @@
 # Notes:
 #   - By default, password authentication is disabled for better security
 #   - Root login is disabled unless explicitly enabled
-
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.system.openssh;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.system.openssh;
+in {
   options.nyx-module.system.openssh = {
     enable = lib.mkEnableOption "Enable OpenSSH (system module)";
 

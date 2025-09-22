@@ -4,22 +4,24 @@
 #   - inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
 #
 # Notes:
-#   - Estimated kernel build time: 
+#   - Estimated kernel build time:
 #                                 ~4h30m using Kernel 6.15.6
-#                                 ~4h00m using Kernel 6.15.9 
+#                                 ~4h00m using Kernel 6.15.9
 #   - Known Issues:
 #                   - Battery not getting detected. Issue opened: https://github.com/NixOS/nixos-hardware/issues/1612
 #
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.nyx-module.hardware.Custom-Kernel.SurfacePro-KabyLake;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.nyx-module.hardware.Custom-Kernel.SurfacePro-KabyLake;
+in {
   options.nyx-module.hardware.Custom-Kernel.SurfacePro-KabyLake = {
     enable = lib.mkEnableOption "Enable Custom Surface Pro (Kaby Lake) kernel module";
     kernelVersion = lib.mkOption {
-      type = lib.types.enum [ "stable" "longtime" ];
+      type = lib.types.enum ["stable" "longtime"];
       default = "stable";
       description = "Choose which kernel version nixos-hardware will build for Surface Pro.";
     };
@@ -37,14 +39,13 @@ in
         '';
       }
     ];
-    
-    
+
     # Pick kernel version for Surface hardware support
     hardware.microsoft-surface.kernelVersion = cfg.kernelVersion;
     # boot.kernelPackages = pkgs.linuxPackages_6_6; # normally set by nixos-hardware
 
     # Extra kernel modules
-    boot.kernelModules = [ "hid-microsoft" "battery" "ac" ];
+    boot.kernelModules = ["hid-microsoft" "battery" "ac"];
 
     hardware.enableAllFirmware = true;
     # Initrd modules — required for Surface hardware to function
@@ -66,7 +67,7 @@ in
       #for camera
       libcamera
 
-      # for Battery 
+      # for Battery
       tlp
       upower
       acpi

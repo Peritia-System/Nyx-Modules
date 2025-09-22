@@ -41,17 +41,17 @@ with lib; let
   # Resolve the user home safely even if the user isn't declared yet.
   userHome = lib.attrByPath ["users" "users" cfg.user "home"] "/home/${cfg.user}" config;
 
-   # Only generate passwd file if enabled, otherwise null
+  # Only generate passwd file if enabled, otherwise null
   generatedPasswdFile =
-    if cfg.enable then
+    if cfg.enable
+    then
       pkgs.runCommand "tigervnc-passwd" {
-        buildInputs = [ pkgs.tigervnc ];
+        buildInputs = [pkgs.tigervnc];
       } ''
         mkdir -p $out
         echo -n "${cfg.password}" | vncpasswd -f > $out/passwd
       ''
-    else
-      null;
+    else null;
 in {
   options.nyx-module.system.service.vnc = {
     enable = mkEnableOption "Enable a TigerVNC multi-session server.";
@@ -250,4 +250,3 @@ in {
     ];
   };
 }
-

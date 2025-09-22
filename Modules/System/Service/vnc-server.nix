@@ -25,6 +25,10 @@
 #     geometry = "1280x800";
 #   };
 #
+# WARNING:
+# I tested this using XFCE no idea how it reacts to other DE or Wayland. 
+# I also take no responsibility for something now working or breaking  
+#
 
 {
   config,

@@ -1,22 +1,22 @@
-# nyx-module/system/service/vnc.nix
+# TigerVNC Multi-Session Server Module
 #
-# Provides:
-#   - TigerVNC multi-session server as a systemd service
-#   - Desktop session (.desktop file) for the chosen environment
+# This module provides:
+#   - A systemd service for running a TigerVNC multi-session server
 #   - Automatic password hashing at build time (via `vncpasswd -f`)
-#   - Optional firewall rule opening for chosen display port
+#   - Desktop session registration (.desktop file) for the chosen environment
+#   - Optional firewall opening for the configured display port
 #
-# Options:
-#   enable        → Enable the VNC server service
-#   user          → System user that owns and runs the VNC server
-#   password      → Plaintext password (hashed during build)
-#   displayNumber → X display number (e.g. :1 => TCP 5901)
-#   openFirewall  → Open firewall for the corresponding TCP port
-#   session       → Name of the desktop session (xfce, plasma, etc.)
-#   geometry      → Screen resolution (e.g. 1920x1080)
-#   sessionCommand→ Command to start the X session
+# Configuration Options:
+#   enable         – Enable the VNC server service (boolean)
+#   user           – System user that owns and runs the VNC server (string)
+#   password       – Plaintext password (hashed at build time; first 8 chars significant)
+#   displayNumber  – X display number (e.g. `1` → :1 → TCP port 5901)
+#   openFirewall   – Open the firewall for the selected display port (boolean)
+#   session        – Name of the desktop session (e.g. "xfce", "plasma")
+#   geometry       – Default screen resolution (e.g. "1920x1080")
+#   sessionCommand – Command to start the X session (full path)
 #
-# Example:
+# Example Usage:
 #   nyx-module.system.service.vnc = {
 #     enable = true;
 #     user = "myuser";
@@ -25,10 +25,7 @@
 #     geometry = "1280x800";
 #   };
 #
-# After enabling, run:
-#   sudo nixos-rebuild switch
-#   sudo systemctl enable --now vncserver
-#
+
 {
   config,
   pkgs,

@@ -6,9 +6,12 @@
 # Options:
 #   - enable -> Enable GParted system module
 #
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.nyx-module.system.gparted;
 in {
   options.nyx-module.system.gparted = {

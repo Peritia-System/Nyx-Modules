@@ -26,10 +26,9 @@
 #   };
 #
 # WARNING:
-# I tested this using XFCE no idea how it reacts to other DE or Wayland. 
-# I also take no responsibility for something now working or breaking  
+# I tested this using XFCE no idea how it reacts to other DE or Wayland.
+# I also take no responsibility for something now working or breaking
 #
-
 {
   config,
   pkgs,
@@ -120,7 +119,7 @@ in {
       desktopManager.xfce.enable = true;
       xkb.layout = "de";
     };
-    
+
     # Has been renamed
     # services.xserver.displayManager.defaultSession = cfg.session;
     services.displayManager.defaultSession = cfg.session;

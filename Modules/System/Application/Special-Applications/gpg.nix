@@ -11,9 +11,12 @@
 #   - enableSeahorse   -> Enable Seahorse (GUI key manager)
 #   - pinentry.package -> Pinentry package (default: pkgs.pinentry-all)
 #
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.nyx-module.system.gpg;
 in {
   options.nyx-module.system.gpg = {
@@ -23,7 +26,7 @@ in {
       type = lib.types.bool;
       default = false;
       description = ''
-        Enable SSH agent emulation support in gpg-agent.  
+        Enable SSH agent emulation support in gpg-agent.
         This allows you to use your GPG keys for SSH authentication.
       '';
     };
@@ -34,7 +37,7 @@ in {
       type = lib.types.package;
       default = pkgs.pinentry-all;
       description = ''
-        The pinentry package to use.  
+        The pinentry package to use.
         By default, `pkgs.pinentry-all` is installed, which includes
         all common backends (tty, curses, gtk2, qt, gnome3).
       '';

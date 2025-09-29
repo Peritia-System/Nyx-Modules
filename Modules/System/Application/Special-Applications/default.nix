@@ -8,5 +8,6 @@
     ./flatpak.nix
     ./wireshark.nix
     ./gpg.nix
+    ./gparted.nix
   ];
 }

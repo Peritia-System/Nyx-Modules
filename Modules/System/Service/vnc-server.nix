@@ -119,8 +119,11 @@ in {
       enable = true;
       desktopManager.xfce.enable = true;
       xkb.layout = "de";
-      displayManager.defaultSession = cfg.session; # fixed option path
     };
+    
+    # Has been renamed
+    # services.xserver.displayManager.defaultSession = cfg.session;
+    services.displayManager.defaultSession = cfg.session;
 
     # Configure session
     services.xserver.displayManager.session = [

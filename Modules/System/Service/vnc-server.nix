@@ -123,7 +123,7 @@ in {
     };
 
     # Configure session
-    services.xserver.displayManager.session = [
+    services.displayManager.session = [
       {
         manage = "desktop";
         name = cfg.session;

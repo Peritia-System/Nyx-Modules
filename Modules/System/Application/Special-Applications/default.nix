@@ -7,5 +7,6 @@
   imports = [
     ./flatpak.nix
     ./wireshark.nix
+    ./gpg.nix
   ];
 }

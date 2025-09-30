@@ -189,8 +189,12 @@ in {
           export XDG_RUNTIME_DIR="/run/user/$(id -u)"
           export XKL_XMODMAP_DISABLE=1
           export GTK_USE_PORTAL=0
-          export PULSE_SERVER=unix:/run/user/$(id -u)/pulse/native
-          export PULSE_SERVER=tcp:localhost:4714
+
+          # OLD:
+          #export PULSE_SERVER=unix:/run/user/$(id -u)/pulse/native
+          #export PULSE_SERVER=tcp:localhost:4714
+          
+          
           # Log:
           echo "=== Starting VNC session on $(date) ===" >> "$HOME/.vnc/xstartup.log" 2>&1
 

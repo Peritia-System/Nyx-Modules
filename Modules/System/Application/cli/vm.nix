@@ -15,6 +15,7 @@
 #   - virt-manager GUI is enabled automatically
 #   - Only generic "kvm" kernel module is forced (host picks intel/amd)
 #
+
 {
   config,
   lib,
@@ -35,27 +36,25 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      virt-manager
+      virtio-win
       spice-gtk
       dnsmasq
       bridge-utils
     ];
 
+    services.qemuGuest.enable = true;
+    services.spice-vdagentd.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
+
     virtualisation.libvirtd = {
       enable = true;
-      qemu = {
-        package = pkgs.qemu_full;
-        runAsRoot = true;
-      };
+      qemu.runAsRoot = true;
     };
 
-    # Add user to groups
-    users.users.${cfg.username}.extraGroups = ["libvirtd" "kvm"];
+    users.groups.libvirtd.members = [cfg.username];
+    users.groups.kvm.members = [cfg.username];
 
-    # Enable kernel modules for virtualization
     boot.kernelModules = ["kvm"];
-
-    # Enable GUI management tool
     programs.virt-manager.enable = true;
 
     assertions = [

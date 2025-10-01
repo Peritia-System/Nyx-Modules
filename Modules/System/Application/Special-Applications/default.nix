@@ -9,5 +9,6 @@
     ./wireshark.nix
     ./gpg.nix
     ./gparted.nix
+    ./packettracer.nix
   ];
 }

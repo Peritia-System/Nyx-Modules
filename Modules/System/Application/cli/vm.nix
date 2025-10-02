@@ -50,6 +50,7 @@ in {
       enable = true;
       qemu.runAsRoot = true;
     };
+  virtualisation.libvirtd.qemu.swtpm.enable = true;
 
     users.groups.libvirtd.members = [cfg.username];
     users.groups.kvm.members = [cfg.username];

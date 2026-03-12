@@ -1,5 +1,25 @@
 # Nyx-Modules
 
+> [!WARNING]    
+> This Repo moved!    
+> Please visit: [The New Repository](https://git.alovely.space/peritia/Custom_Nix_Modules)    
+> You can continue to use this as an Inspiration  
+> But i recommend checking out the new Modules on my new Repo  
+
+
+In general Checkout:   
+My Repos: https://git.alovely.space/peritia  
+Or the Nyx Repos: https://git.alovely.space/Nyx  
+
+---
+
+
+---
+
+
+---
+
+
 Welcome to **Nyx-Modules**!
 
 This is my repo with all my modules, which makes it easier for me to import them into different configurations. Maybe it helps someone else too.
